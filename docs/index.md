@@ -1,17 +1,13 @@
-# Welcome to MkDocs
+# Statistical Learning
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+<div class="note">       
+    <strong>NOTE</strong>: This website is still under the construction.
+</div>
 
-## Commands
+This website is aimed at excerpting some fundamental knowledge in statistical learning for self-learning. The main structure of this website is from the table of contents in the Statistical Learning textbook *An Introduction to Statistical Learning*. 
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## References
 
-## Project layout
+[1] [An Introduction to Statistical Learning: with Applications in R, Second Edition](https://www.statlearning.com/)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+[2] [Data Science and Machine Learning: Mathematical and Statistical Methods, First Edition](https://people.smp.uq.edu.au/DirkKroese/DSML/)

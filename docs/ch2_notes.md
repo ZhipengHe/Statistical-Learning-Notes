@@ -8,7 +8,7 @@ $$Y=f(X)+\epsilon$$
 
 Here $f$ is some fixed but unknown function of different ***predictors***, $X_1,X_2, \ldots, X_p,$ and $\epsilon$ is a random error term, which is independent of $X$ and has mean zero. In this formulation, $f$ represents the systematic information that $X$ provides about ***response*** $Y$.
 
-#### 2.1.1 Why Estimate $f$?
+#### 2.1.1 Why Estimate \(f\)?
 
 ##### &#10148; Prediction
 
