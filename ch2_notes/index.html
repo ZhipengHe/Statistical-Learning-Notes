@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://zhipenghe.me/Statistical-Learning-Notes/ch2_notes/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Chapter 2: Statistical Learning - Statistical Learning Notes</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Chapter 2: Statistical Learning";
+    var mkdocs_page_input_path = "ch2_notes.md";
+    var mkdocs_page_url = "/Statistical-Learning-Notes/ch2_notes/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Statistical Learning Notes</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Chapter 2: Statistical Learning</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#21-what-is-statistical-learning">2.1 What is statistical learning?</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#211-why-estimate-f">2.1.1 Why Estimate \(f\)?</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#prediction">&#10148; Prediction</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#inference">&#10148; Inference</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#prediction-inference">&#10148; Prediction &amp; Inference</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#212-how-do-we-estimate-f">2.1.2 How Do We Estimate \(f\)?</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#parametric-methods">&#10148; Parametric Methods</a>
+    </li>
+    <li class="toctree-l4"><a class="reference internal" href="#non-parametric-methods">&#10148; Non-Parametric Methods</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#213-prediction-accuracy-and-model-interpretability">2.1.3 Prediction Accuracy and Model Interpretability</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#214-supervised-versus-unsupervised-learning">2.1.4 Supervised Versus Unsupervised Learning</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#215-regression-versus-classification-problems">2.1.5 Regression Versus Classification Problems</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Statistical Learning Notes</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Chapter 2: Statistical Learning</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h2 id="chapter-2-statistical-learning">Chapter 2: Statistical Learning</h2>
+<h3 id="21-what-is-statistical-learning">2.1 What is statistical learning?</h3>
+<p><strong><em>Statistical learning</em></strong> refers to a set of approaches for estimating <span class="arithmatex">\(f\)</span>. </p>
+<div class="arithmatex">\[Y=f(X)+\epsilon\]</div>
+<p>Here <span class="arithmatex">\(f\)</span> is some fixed but unknown function of different <strong><em>predictors</em></strong>, <span class="arithmatex">\(X_1,X_2, \ldots, X_p,\)</span> and <span class="arithmatex">\(\epsilon\)</span> is a random error term, which is independent of <span class="arithmatex">\(X\)</span> and has mean zero. In this formulation, <span class="arithmatex">\(f\)</span> represents the systematic information that <span class="arithmatex">\(X\)</span> provides about <strong><em>response</em></strong> <span class="arithmatex">\(Y\)</span>.</p>
+<h4 id="211-why-estimate-f">2.1.1 Why Estimate <span class="arithmatex">\(f\)</span>?</h4>
+<h5 id="prediction">&#10148; Prediction</h5>
+<p>A set of inputs <span class="arithmatex">\(X\)</span> are readily available, but the output <span class="arithmatex">\(Y\)</span> cannot be easily obtained. We can predict <span class="arithmatex">\(Y\)</span> using </p>
+<div class="arithmatex">\[\hat Y=\hat f(X)\]</div>
+<p>where <span class="arithmatex">\(\hat f\)</span> represents our estimate for f, and <span class="arithmatex">\(\hat Y\)</span> represents the resulting prediction for Y. In this setting, <span class="arithmatex">\(\hat f\)</span> is often treated as a <strong><em>black box</em></strong>, in the sense that one is not typically concerned with the exact form of <span class="arithmatex">\(\hat f\)</span>, provided that it yields accurate predictions for <span class="arithmatex">\(Y\)</span>.</p>
+<p>The accuracy of <span class="arithmatex">\(\hat Y\)</span> as a prediction for <span class="arithmatex">\(Y\)</span> depends on two quantities,
+which we will call the <strong><em>reducible error</em></strong> and the <strong><em>irreducible error</em></strong>.</p>
+<ul>
+<li>The reducible error is reducible because we can potentially improve the accuracy of <span class="arithmatex">\(\hat Y\)</span> by using the most appropriate statistical learning technique to estimate <span class="arithmatex">\(f\)</span>.</li>
+<li>For the irreducible error, even if it were possible to form a perfect estimate for <span class="arithmatex">\(f\)</span>, so that our estimated response took the form <span class="arithmatex">\(\hat Y = f(X)\)</span>, our prediction would still have some error in it! </li>
+<li>This is because <span class="arithmatex">\(Y\)</span> is also a function of <span class="arithmatex">\(\epsilon\)</span>, which, by definition, cannot be predicted using <span class="arithmatex">\(X\)</span>. Therefore, variability associated with <span class="arithmatex">\(\epsilon\)</span> also affects the accuracy of our predictions. This is known as the irreducible error, because no matter how well we estimate <span class="arithmatex">\(f\)</span>, we cannot reduce the error introduced by <span class="arithmatex">\(\epsilon\)</span>.</li>
+</ul>
+<p>Consider a given estimate <span class="arithmatex">\(\hat Y\)</span> and a set of predictors <span class="arithmatex">\(X\)</span>, which yields the prediction <span class="arithmatex">\(\hat Y=\hat f(X)\)</span>. Assume for a moment that both <span class="arithmatex">\(\hat f\)</span> and <span class="arithmatex">\(X\)</span> are fixed, so that the only variability comes from <span class="arithmatex">\(\epsilon\)</span>. Then, it is easy to show that</p>
+<div class="arithmatex">\[E(Y- \hat Y)^2 = E[f(X)+\epsilon- \hat f(X)]^2
+= [f(X)- \hat f(X)]^2+ Var(\epsilon),\]</div>
+<p>where <span class="arithmatex">\(E(Y- \hat Y)^2\)</span> represents the average, or <strong><em>expected value</em></strong>, of the squared difference between the predicted and actual value of <span class="arithmatex">\(Y\)</span>, and <span class="arithmatex">\(Var(\epsilon)\)</span> represents the <strong><em>variance</em></strong> associated with the error term <span class="arithmatex">\(\epsilon\)</span>.</p>
+<h5 id="inference">&#10148; Inference</h5>
+<p>Different from prediction, inference is aimed at understanding the association between <span class="arithmatex">\(Y\)</span> and <span class="arithmatex">\(X_1, \ldots, X_p\)</span>. In this situation we wish to estimate <span class="arithmatex">\(f\)</span>, but our goal is not necessarily to make predictions for <span class="arithmatex">\(Y\)</span>. Now <span class="arithmatex">\(\hat f\)</span> cannot be treated as a black
+box, because we need to know its exact form.</p>
+<h5 id="prediction-inference">&#10148; Prediction &amp; Inference</h5>
+<p>Some modeling could be conducted both for prediction and inference. Depending on whether our ultimate goal is prediction, inference, or a combination of the two, different methods for estimating <span class="arithmatex">\(f\)</span> may be appropriate.</p>
+<h4 id="212-how-do-we-estimate-f">2.1.2 How Do We Estimate <span class="arithmatex">\(f\)</span>?</h4>
+<h5 id="parametric-methods">&#10148; Parametric Methods</h5>
+<p>Parametric methods involve a two-step model-based approach.</p>
+<ol>
+<li>First, we make an assumption about the functional form, or shape, of <span class="arithmatex">\(f\)</span>. For example, one very simple assumption is that <span class="arithmatex">\(f\)</span> is linear in <span class="arithmatex">\(X\)</span>:</li>
+</ol>
+<div class="arithmatex">\[f(X)=\beta_0 +\beta_1 X_1+\beta_2 X-2 +\ldots+\beta_p X_p\]</div>
+<p>Once we have assumed that f is linear, the problem of estimating <span class="arithmatex">\(f\)</span> is greatly simplified. Instead of having to estimate an entirely arbitrary <span class="arithmatex">\(p\)</span>-dimensional function <span class="arithmatex">\(f(X)\)</span>, one only needs to estimate the <span class="arithmatex">\(p + 1\)</span> coefficients <span class="arithmatex">\(\beta_1+\beta_2+\ldots+\beta_p\)</span>.</p>
+<ol>
+<li>After a model has been selected, we need a procedure that uses the training data to <strong><em>fit</em></strong> or train the model. In the case of the linear model, we need to estimate the parameters <span class="arithmatex">\(\beta_1+\beta_2+\ldots+\beta_p\)</span>. That is, we want to find values of these parameters such that</li>
+</ol>
+<div class="arithmatex">\[Y \approx \beta_0 +\beta_1 X_1+\beta_2 X-2 +\ldots+\beta_p X_p\]</div>
+<p>The model-based approach just described is referred to as <strong><em>parametric</em></strong>; it reduces the problem of estimating <span class="arithmatex">\(f\)</span> down to one of estimating a set of parameters. </p>
+<p><strong><em>Advantages</em></strong>: </p>
+<ul>
+<li><strong><em>Simpler</em></strong>: Assuming a parametric form for <span class="arithmatex">\(f\)</span> simplifies the problem of estimating <span class="arithmatex">\(f\)</span> because it is generally much easier to estimate a set of parameters than to fit an entirely arbitrary function <span class="arithmatex">\(f\)</span>.</li>
+<li><strong><em>Speed</em></strong>: Parametric models are very fast to learn from data.</li>
+<li><strong><em>Less Data</em></strong>: They do not require as much training data and can work well even if the fit to the data is not perfect.</li>
+</ul>
+<p><strong><em>Disadvantages</em></strong>:</p>
+<ul>
+<li><strong><em>Constrained</em></strong>: By choosing a functional form these methods are highly constrained to the specified form.</li>
+<li><strong><em>Limited Complexity</em></strong>: The methods are more suited to simpler problems.</li>
+<li><strong><em>Poor Fit</em></strong>: The chosen model will usually not match the true unknown form of <span class="arithmatex">\(f\)</span>.</li>
+</ul>
+<p><strong><em>Examples</em></strong>: </p>
+<ul>
+<li>Linear Regression</li>
+<li>Logistic Regression</li>
+<li>Perceptron</li>
+<li>Naive Bayes</li>
+<li>Simple Neural Networks</li>
+</ul>
+<h5 id="non-parametric-methods">&#10148; Non-Parametric Methods</h5>
+<p>Non-parametric methods do not make explicit assumptions about the functional form of <span class="arithmatex">\(f\)</span>. Instead they seek an estimate of f that gets as close to the data points as possible without being too rough or wiggly.</p>
+<p><strong><em>Advantages</em></strong>:</p>
+<ul>
+<li><strong><em>Flexibility</em></strong>: Capable of fitting a large number of functional forms.</li>
+<li><strong><em>Power</em></strong>: No assumptions (or weak assumptions) about the underlying function.</li>
+<li><strong><em>Performance</em></strong>: Can result in higher performance models for prediction.</li>
+</ul>
+<p><strong><em>Disadvantages</em></strong>:</p>
+<ul>
+<li><strong><em>More data</em></strong>: Require a lot more training data to estimate the mapping function.</li>
+<li><strong><em>Slower</em></strong>: A lot slower to train as they often have far more parameters to train.</li>
+<li><strong><em>Overfitting</em></strong>: More of a risk to overfit the training data and it is harder to explain why specific predictions are made.</li>
+</ul>
+<p><strong><em>Examples</em></strong>:</p>
+<ul>
+<li>k-Nearest Neighbors</li>
+<li>Support Vector Machine</li>
+<li>Random Forests</li>
+</ul>
+<h4 id="213-prediction-accuracy-and-model-interpretability">2.1.3 Prediction Accuracy and Model Interpretability</h4>
+<h4 id="214-supervised-versus-unsupervised-learning">2.1.4 Supervised Versus Unsupervised Learning</h4>
+<h4 id="215-regression-versus-classification-problems">2.1.5 Regression Versus Classification Problems</h4>
+<h3 id="reference">Reference</h3>
+<p>[1] <a href="https://www.statlearning.com/">An Introduction to Statistical Learning: with Applications in R, Second Edition</a>, Chapter 2</p>
+<p>[2] <a href="https://machinelearningmastery.com/parametric-and-nonparametric-machine-learning-algorithms/">Parametric and Nonparametric Machine Learning Algorithms</a>, Blog Post</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../javascripts/config.js" defer></script>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+      <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
