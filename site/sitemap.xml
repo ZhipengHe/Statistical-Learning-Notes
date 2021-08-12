@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://zhipenghe.me/Statistical-Learning-with-R/</loc>
+         <lastmod>2021-08-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://zhipenghe.me/Statistical-Learning-with-R/Chapter_2/</loc>
+         <lastmod>2021-08-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://zhipenghe.me/Statistical-Learning-with-R/about/</loc>
+         <lastmod>2021-08-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
