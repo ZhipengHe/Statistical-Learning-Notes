@@ -2,7 +2,7 @@ site_name: Statistical Learning with R
 site_url: https://zhipenghe.me/Statistical-Learning-with-R/
 nav:
     - Home: index.md
-    - Chapter 2: Chapter_2.md
+    - Chapter 2: ch2_notes.md
     - About: about.md
 theme: readthedocs
 
